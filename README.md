@@ -1,247 +1,175 @@
 <div align="center">
-  <h1>🚀 TaskFlow – Team Task Manager</h1>
-  <p><strong>A production-grade, role-based full-stack task management platform</strong></p>
-  
-  ![Spring Boot](https://img.shields.io/badge/Spring_Boot-F2F4F9?style=for-the-badge&logo=spring-boot)
-  ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-  ![MySQL](https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white)
-  ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+
+  <h1>🚀 TaskFlow</h1>
+  <p><strong>Modern Team Task Management & Collaboration Platform</strong></p>
+
+  <p>
+    <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java" />
+    <img src="https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white" alt="Spring Boot" />
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+    <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+    <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  </p>
+
+  <h4>
+    <a href="#-features">Features</a> •
+    <a href="#-architecture">Architecture</a> •
+    <a href="#-workflow">Workflow</a> •
+    <a href="#-tech-stack">Tech Stack</a> •
+    <a href="#-installation">Installation</a>
+  </h4>
+
+  <hr />
 </div>
 
-<br />
+## 📄 Overview
 
-## 📖 2. Professional Project Description
-**TaskFlow** is a modern, full-stack task management web application designed to streamline team collaboration. Built with a robust Spring Boot backend and a highly responsive React frontend, the platform enforces strict Role-Based Access Control (RBAC). 
-
-Administrators have the power to create organization-wide projects, dynamically assign tasks to members, and track real-time aggregate statistics. Members enjoy a personalized, distraction-free dashboard tailored strictly to their assigned duties. This project was developed with clean code principles, leveraging Data Transfer Objects (DTOs) for secure data exposure and an intelligent Service-layer architecture to manage complex business logic natively.
+**TaskFlow** is a production-ready, full-stack task management solution designed for modern teams. It bridges the gap between administrative oversight and member execution through a robust **Role-Based Access Control (RBAC)** system. Built with performance and security in mind, it leverages a high-performance Spring Boot backend and a lightning-fast React + Vite frontend.
 
 ---
 
-## ✨ 3. Live Features List
-- 🔐 **Secure User Authentication**: Complete signup and login flow.
-- 🛡️ **Role-Based Access Control (RBAC)**: Distinct permissions for `ADMIN` and `MEMBER` accounts.
-- 📂 **Project Management**: Admins can create, delete, and oversee large-scale projects.
-- ✅ **Task Delegation**: Tasks can be created and specifically assigned to active organization members.
-- 👥 **Dynamic User Discovery**: Frontend assignment dropdowns populate automatically from a secure backend user directory endpoint.
-- 📊 **Real-Time Dashboards**: Dashboards intelligently display aggregate (Admin) or personal (Member) statistics without stale caching.
-- 🔄 **Interactive Status Tracking**: Members can instantly update their task statuses (Pending, In Progress, Completed).
-- 🌐 **Protected Frontend Routing**: React Router prevents unauthorized access to internal dashboards.
-- ☁️ **Environment Separation**: Clean configuration separation for local development vs. cloud deployment.
+## 🚀 Features
+
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <h4>🔐 Security & Auth</h4>
+      <ul>
+        <li>Secure Signup/Login flow</li>
+        <li>Role-Based Access Control (ADMIN/MEMBER)</li>
+        <li>Protected Frontend Routes</li>
+        <li>DTO-based Backend Data Exposure</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h4>📂 Management</h4>
+      <ul>
+        <li>Dynamic Project Creation (Admin)</li>
+        <li>Real-time Task Assignment</li>
+        <li>Status Tracking (Pending ➔ Completed)</li>
+        <li>Automated User Discovery</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <h4>📊 Dashboards</h4>
+      <ul>
+        <li>Admin: Organizational Analytics</li>
+        <li>Member: Personalized Task Board</li>
+        <li>Real-time Data Synchronization</li>
+        <li>Clean, Data-Driven Visuals</li>
+      </ul>
+    </td>
+    <td width="50%" valign="top">
+      <h4>💻 UI/UX</h4>
+      <ul>
+        <li>Modern Dark Sidebar / Light Workspace</li>
+        <li>Responsive Mobile-first Design</li>
+        <li>Micro-animations & Smooth Transitions</li>
+        <li>Centralized API Interceptors</li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🛠️ 4. Tech Stack
+## 🏗 Architecture
 
-### Frontend
-| Technology | Description |
-|------------|-------------|
-| ⚛️ **React.js** | Core UI library for building responsive interfaces |
-| ⚡ **Vite** | Next-generation frontend tooling and rapid bundling |
-| 🛣️ **React Router** | Client-side routing for seamless SPA navigation |
-| 📡 **Axios** | Promise-based HTTP client for intercepting backend requests |
-| 🎨 **Vanilla CSS** | Custom, modular styling tailored for a clean, modern aesthetic |
+The system follows a decoupled, **N-Tier Architecture** ensuring high scalability and maintainability.
 
-### Backend
-| Technology | Description |
-|------------|-------------|
-| ☕ **Java 17** | Core backend programming language |
-| 🌱 **Spring Boot** | Framework for building production-ready RESTful web services |
-| 🪪 **Spring Security** | Backend authentication and security context (conceptual implementation) |
-| 💾 **JPA / Hibernate** | ORM for mapping Java entities to relational database tables |
-| 🏗️ **Maven** | Dependency management and build automation |
-
-### Database
-| Technology | Description |
-|------------|-------------|
-| 🐬 **MySQL** | Highly reliable relational database management system |
-
----
-
-## 🏛️ 5. System Architecture Overview
-The application follows a classic **Three-Tier Architecture**:
-1. **Presentation Layer (React)**: Handles UI rendering, global state, API interceptors, and route protection.
-2. **Application Layer (Spring Boot)**: 
-   - **Controllers**: Thin endpoints strictly responsible for handling HTTP requests and returning JSON.
-   - **Services**: Thick business logic layer where all role-checking, security filtering, and data aggregation occurs.
-   - **DTOs**: Data Transfer Objects used to safely serialize data to the frontend (e.g., stripping passwords from user directories).
-3. **Data Layer (MySQL / JPA)**: Manages persistence using Hibernate with dynamic, role-aware aggregate queries.
-
----
-
-## 📁 6. Folder Structure
-
-```text
-TaskFlow/
-│
-├── backend/                       # Spring Boot Application
-│   ├── src/main/java/com/example/taskmanager/
-│   │   ├── controller/            # REST API Endpoints
-│   │   ├── dto/                   # Data Transfer Objects
-│   │   ├── entity/                # JPA Database Models (User, Task, Project)
-│   │   ├── exception/             # Global Exception Handling
-│   │   ├── repository/            # Spring Data JPA Interfaces
-│   │   └── service/               # Core Business Logic & RBAC
-│   └── src/main/resources/
-│       ├── application.properties      # Local DB Config
-│       └── application-prod.properties # Cloud DB Config
-│
-└── frontend/                      # React / Vite Application
-    ├── src/
-    │   ├── api.js                 # Global Axios Instance & API Calls
-    │   ├── components/            # Reusable UI Cards & Navbars
-    │   ├── pages/                 # Protected Views (Dashboard, Tasks, Projects)
-    │   └── styles/                # Modular CSS
-    └── package.json
+```mermaid
+graph LR
+    A[React Client] -- REST API --> B[Spring Boot API]
+    B -- JPA/Hibernate --> C[(MySQL Database)]
+    subgraph Frontend
+    A
+    end
+    subgraph Backend
+    B
+    end
+    subgraph Storage
+    C
+    end
 ```
 
 ---
 
-## 🗄️ 7. Database Design Overview
-The relational MySQL database relies on three primary entities:
-- **`users`**: Stores user credentials, emails, and roles (`ADMIN`, `MEMBER`).
-- **`projects`**: Created by an Admin, acts as a high-level container for tasks. (One-to-Many relationship with Tasks).
-- **`tasks`**: The core operational unit. Contains a status enum (`PENDING`, `IN_PROGRESS`, `COMPLETED`), due dates, and foreign keys linking back to both `projects` and assigned `users`.
+## 🔄 Workflow
+
+Experience a seamless operational flow designed for enterprise-level task delegation.
+
+1. **Admin Creation** ➔ Create complex projects to group strategic objectives.
+2. **Dynamic Discovery** ➔ Select from a live-synced list of organization members.
+3. **Task Assignment** ➔ Delegate tasks with descriptions and target dates.
+4. **Member Execution** ➔ Members receive tasks instantly on their secure dashboards.
+5. **Real-time Sync** ➔ Status updates (Pending → In Progress → Completed) reflect globally.
 
 ---
 
-## 🎭 8. Role-Based Workflow Explanation
+## 🛠 Tech Stack
 
-### 👑 Administrator Workflow
-- **Visibility**: Sees the entire organization. The Admin Dashboard reflects total counts of all tasks in the database.
-- **Capabilities**: Can create new projects, view the global directory of users, create tasks, and delegate tasks to specific members.
-- **Tracking**: Admins can monitor the status of all delegated tasks across the system.
-
-### 👷 Member Workflow
-- **Visibility**: Restricted. The Member Dashboard only calculates statistics for tasks explicitly assigned to them.
-- **Capabilities**: Can view assigned tasks and dynamically change task statuses as they progress through their workflow.
-- **Restrictions**: Cannot access Admin routes (e.g., Project Creation) or view other users' tasks.
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | ![React](https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white) ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=axios&logoColor=white) ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=flat-square&logo=react-router&logoColor=white) |
+| **Backend** | ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat-square&logo=spring-boot&logoColor=white) ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=flat-square&logo=hibernate&logoColor=white) ![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apache-maven&logoColor=white) |
+| **Database** | ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white) |
 
 ---
 
-## 🔌 9. API Flow Explanation
-All communication between the frontend and backend occurs via RESTful JSON APIs.
-1. **Authentication**: Upon successful login, the backend responds with the user's `userId` and `role`.
-2. **Interceptor**: The frontend stores this in `localStorage`. The `api.js` Axios interceptor dynamically injects the `userId` into the header of *every* subsequent request.
-3. **Service Logic**: The Spring Boot backend reads the request, queries the `UserRepository`, determines if the user is an `ADMIN` or `MEMBER`, and branches the database queries accordingly to return the correct dataset.
 
----
+## ⚙️ Installation
 
-## ⚙️ 10. Setup & Installation Steps
-Follow these instructions to run the application locally on your machine.
+### 1. Prerequisites
+* Java 17+
+* Node.js 18+
+* MySQL 8.0+
 
-### 📥 15. GitHub Clone Instructions
+### 2. Backend Setup
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/taskflow.git
-
-# Navigate into the directory
-cd taskflow
+cd backend
+# Update application.properties with your DB credentials
+./mvnw clean compile spring-boot:run
 ```
 
----
-
-### 🐬 13. MySQL Setup Instructions
-Ensure MySQL is installed and running locally.
+### 3. Frontend Setup
 ```bash
-# Log into MySQL
-mysql -u root -p
-
-# Execute this SQL command to create the database:
-CREATE DATABASE IF NOT EXISTS taskmanager;
-EXIT;
+cd frontend
+npm install
+npm run dev
 ```
 
 ---
 
-### 🔐 14. Environment Variables / application.properties Example
-Navigate to `backend/src/main/resources/application.properties` and configure your local database credentials:
+## 📊 Environment Configuration
 
+Separate configuration profiles for clean development and production workflows.
+
+#### Local Development (`application.properties`)
 ```properties
-spring.application.name=taskmanager
-
-# Local Development Database Connection
 spring.datasource.url=jdbc:mysql://localhost:3306/taskmanager
 spring.datasource.username=root
 spring.datasource.password=YOUR_PASSWORD
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
-# Hibernate settings
 spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
-spring.jpa.show-sql=true
 ```
-*(Hibernate will automatically generate all necessary tables upon startup).*
 
----
-
-### ☕ 11. Backend Setup Instructions
-```bash
-# Navigate to the backend directory
-cd backend
-
-# Compile and run the Spring Boot application
-./mvnw clean compile spring-boot:run
+#### Production Template (`application-prod.properties`)
+```properties
+spring.datasource.url=jdbc:mysql://${DB_HOST}:3306/${DB_NAME}
+spring.datasource.username=${DB_USER}
+spring.datasource.password=${DB_PASS}
 ```
-*The backend will start on `http://localhost:8080`.*
 
 ---
 
-### ⚛️ 12. Frontend Setup Instructions
-Open a new terminal window:
-```bash
-# Navigate to the frontend directory
-cd frontend
+## 🎓 Learning Outcomes
 
-# Install dependencies
-npm install
-
-# Start the Vite development server
-npm run dev
-```
-*The frontend will start on `http://localhost:5173`. Open this in your browser.*
+* **Advanced RBAC**: Implementation of server-side role validation and frontend route guarding.
+* **REST Data Integrity**: Leveraging DTOs and Service-layer branching for secure data exfiltration.
+* **Entity Relationships**: Managing complex `@ManyToOne` associations in a relational schema.
+- **Environment Management**: Decoupling configuration from code for production readiness.
 
 ---
 
-## 📸 16. Screenshots
 
-| Admin Dashboard | Task Creation & Assignment |
-| :---: | :---: |
-| *(Replace with image URL)*<br> `![Admin Dashboard](docs/admin-dash.png)` | *(Replace with image URL)*<br> `![Create Task](docs/create-task.png)` |
-
-| Member Workspace | Project Overview |
-| :---: | :---: |
-| *(Replace with image URL)*<br> `![Member Tasks](docs/member-tasks.png)` | *(Replace with image URL)*<br> `![Projects](docs/projects.png)` |
-
----
-
-## 🚀 17. Future Improvements
-While the application is fully functional, potential future enhancements include:
-- **JWT Implementation**: Upgrading the current header-based authentication to fully stateless JSON Web Tokens for industry-standard security.
-- **Email Notifications**: Integrating Spring Mail to automatically notify members when a new task is assigned to them.
-- **Task Comments**: Allowing Admins and Members to leave real-time feedback on specific task cards.
-- **Dockerization**: Containerizing both the MySQL database and the Spring Boot application using Docker Compose for 1-click deployments.
-
----
-
-## 🧠 18. Learning Outcomes
-Building TaskFlow provided immense practical experience in:
-- Designing and implementing strict **Role-Based Access Control (RBAC)** across the full stack.
-- Understanding the importance of **Data Transfer Objects (DTOs)** to prevent sensitive database entities from leaking to the client.
-- Orchestrating complex **JPA/Hibernate Aggregate Queries** to power dynamic, live-updating dashboards.
-- Managing asynchronous state and global API interceptors in React.
-- Professionally separating **Development and Production environments** using Spring profiles and property files.
-
----
-
-## 👨‍💻 19. Author
-**[Your Name Here]**
-- 💼 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)
-- 🐙 GitHub: [github.com/yourusername](https://github.com/yourusername)
-- 📧 Email: your.email@example.com
-
----
-
-<div align="center">
-  <b>Thank you for checking out TaskFlow!</b><br>
-  <i>If you found this project interesting or helpful, consider leaving a ⭐ on the repository!</i>
-</div>
