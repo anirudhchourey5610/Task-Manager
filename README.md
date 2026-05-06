@@ -37,8 +37,8 @@ TaskManager/
 Ensure your MySQL server is running. The application will automatically create a database named `taskmanager` if it doesn't exist, provided the credentials match.
 
 In `backend/src/main/resources/application.properties`, the default credentials are:
-- Username: `root`
-- Password: `root123`
+- Username: `YOUR_USERNAME`
+- Password: `YOUR_PASSWORD`
 
 ### 2. Run the Backend (Spring Boot)
 
