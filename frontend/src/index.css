@@ -33,6 +33,7 @@
 
 html {
   width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -41,6 +42,14 @@ body {
   color: var(--text-main);
   line-height: 1.5;
   min-width: 320px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
@@ -116,14 +125,40 @@ body {
 @media (max-width: 768px) {
   .app-container {
     display: block;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .app-container .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(82vw, 280px);
+    max-width: 86vw;
+    height: 100vh;
+    flex: 0 0 auto;
+    transform: translateX(-100%);
+    z-index: 30;
+  }
+
+  .app-container .sidebar.open {
+    transform: translateX(0);
   }
 
   .main-content {
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    flex: none;
   }
 
   .page-content {
     padding: 1.25rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .sidebar-backdrop {
@@ -145,6 +180,14 @@ body {
 }
 
 @media (max-width: 480px) {
+  body {
+    min-width: 0;
+  }
+
+  .app-container .sidebar {
+    width: min(86vw, 280px);
+  }
+
   .page-content {
     padding: 1rem;
   }
