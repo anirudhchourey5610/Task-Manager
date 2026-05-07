@@ -25,14 +25,11 @@ public class TaskController {
     @PostMapping
     public ResponseEntity<Task> createTask(
             @Valid @RequestBody Task task,
-            @RequestHeader(value = "userId", required = false) Long userId) {
-            
-        if (userId == null) {
-            throw new IllegalArgumentException("User ID header is required");
-        }
+            @RequestHeader(value = "userId") Long userId,
+            @RequestHeader(value = "adminId") Long adminId) {
+
         task.setUserId(userId);
-        
-        Task savedTask = taskService.createTask(task);
+        Task savedTask = taskService.createTask(task, adminId);
         return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
     }
 
@@ -87,15 +84,15 @@ public class TaskController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(
-            @PathVariable Long id, 
+            @PathVariable Long id,
             @Valid @RequestBody Task taskDetails,
             @RequestHeader(value = "userId", required = false) Long userId) {
-            
+
         if (userId == null) {
             throw new IllegalArgumentException("User ID header is required");
         }
         taskDetails.setUserId(userId);
-        
+
         Task updatedTask = taskService.updateTask(id, taskDetails);
         return new ResponseEntity<>(updatedTask, HttpStatus.OK);
     }

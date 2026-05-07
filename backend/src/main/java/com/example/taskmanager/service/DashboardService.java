@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class DashboardService {
 
@@ -22,38 +24,29 @@ public class DashboardService {
     private final UserRepository userRepository;
 
     @Autowired
-    public DashboardService(TaskRepository taskRepository, ProjectRepository projectRepository, UserRepository userRepository) {
+    public DashboardService(TaskRepository taskRepository, ProjectRepository projectRepository,
+            UserRepository userRepository) {
         this.taskRepository = taskRepository;
         this.projectRepository = projectRepository;
         this.userRepository = userRepository;
     }
 
-    public DashboardSummaryDTO getSummary(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
-
-        if (user.getRole() == Role.ADMIN) {
-            long total = taskRepository.count();
-            long pending = taskRepository.countByStatus(Status.PENDING);
-            long inProgress = taskRepository.countByStatus(Status.IN_PROGRESS);
-            long completed = taskRepository.countByStatus(Status.COMPLETED);
-            return new DashboardSummaryDTO(total, pending, completed, inProgress);
-        } else {
-            long total = taskRepository.countByAssignedToId(userId);
-            long pending = taskRepository.countByAssignedToIdAndStatus(userId, Status.PENDING);
-            long inProgress = taskRepository.countByAssignedToIdAndStatus(userId, Status.IN_PROGRESS);
-            long completed = taskRepository.countByAssignedToIdAndStatus(userId, Status.COMPLETED);
-            return new DashboardSummaryDTO(total, pending, completed, inProgress);
-        }
+    public DashboardSummaryDTO getSummary(Long adminId) {
+        long total = taskRepository.findByAdminId(adminId).size();
+        long pending = taskRepository.findByAdminId(adminId).stream().filter(t -> t.getStatus() == Status.PENDING)
+                .count();
+        long inProgress = taskRepository.findByAdminId(adminId).stream()
+                .filter(t -> t.getStatus() == Status.IN_PROGRESS).count();
+        long completed = taskRepository.findByAdminId(adminId).stream().filter(t -> t.getStatus() == Status.COMPLETED)
+                .count();
+        return new DashboardSummaryDTO(total, pending, completed, inProgress);
     }
 
-    public List<ProjectTaskCountDTO> getProjectTaskCounts(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found"));
-
-        if (user.getRole() == Role.ADMIN) {
-            return projectRepository.countAllTasksByProject();
-        }
-        return projectRepository.countTasksByProject(userId);
+    public List<ProjectTaskCountDTO> getProjectTaskCounts(Long adminId) {
+        return projectRepository.findByAdminId(adminId).stream()
+                .map(project -> new ProjectTaskCountDTO(project.getId(), project.getName(),
+                        taskRepository.findByAdminId(adminId).stream()
+                                .filter(t -> t.getProject().getId().equals(project.getId())).count()))
+                .collect(toList());
     }
 }

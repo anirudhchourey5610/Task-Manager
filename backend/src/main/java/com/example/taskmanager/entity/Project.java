@@ -21,13 +21,17 @@ public class Project {
     @JoinColumn(name = "user_id", nullable = false)
     private User createdBy;
 
+    @Column(nullable = false)
+    private Long adminId;
+
     public Project() {
     }
 
-    public Project(String name, String description, User createdBy) {
+    public Project(String name, String description, User createdBy, Long adminId) {
         this.name = name;
         this.description = description;
         this.createdBy = createdBy;
+        this.adminId = adminId;
     }
 
     public Long getId() {
@@ -60,5 +64,13 @@ public class Project {
 
     public void setCreatedBy(User createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
     }
 }

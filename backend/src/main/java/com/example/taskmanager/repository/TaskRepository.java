@@ -11,16 +11,18 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
     List<Task> findByAssignedToId(Long userId);
-    
+
     long countByAssignedToId(Long userId);
-    
+
     long countByStatus(Status status);
-    
+
     long countByAssignedToIdAndStatus(Long userId, Status status);
-    
+
     List<Task> findByAssignedToIdAndDueDateBeforeAndStatusNot(Long userId, LocalDate date, Status status);
-    
+
     List<Task> findByAssignedToIdAndStatus(Long userId, Status status);
-    
+
     List<Task> findByProject_IdAndAssignedTo_Id(Long projectId, Long userId);
+
+    List<Task> findByAdminId(Long adminId);
 }

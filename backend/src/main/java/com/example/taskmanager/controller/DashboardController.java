@@ -22,20 +22,21 @@ public class DashboardController {
     }
 
     @GetMapping("/summary")
-    public ResponseEntity<DashboardSummaryDTO> getSummary(@RequestHeader(value = "userId", required = false) Long userId) {
-        if (userId == null) {
-            throw new IllegalArgumentException("User ID header is required");
+    public ResponseEntity<DashboardSummaryDTO> getSummary(@RequestHeader(value = "adminId") Long adminId) {
+        if (adminId == null) {
+            throw new IllegalArgumentException("Admin ID header is required");
         }
-        DashboardSummaryDTO summary = dashboardService.getSummary(userId);
+        DashboardSummaryDTO summary = dashboardService.getSummary(adminId);
         return new ResponseEntity<>(summary, HttpStatus.OK);
     }
 
     @GetMapping("/projects")
-    public ResponseEntity<List<ProjectTaskCountDTO>> getProjectTaskCounts(@RequestHeader(value = "userId", required = false) Long userId) {
-        if (userId == null) {
-            throw new IllegalArgumentException("User ID header is required");
+    public ResponseEntity<List<ProjectTaskCountDTO>> getProjectTaskCounts(
+            @RequestHeader(value = "adminId") Long adminId) {
+        if (adminId == null) {
+            throw new IllegalArgumentException("Admin ID header is required");
         }
-        List<ProjectTaskCountDTO> projectCounts = dashboardService.getProjectTaskCounts(userId);
+        List<ProjectTaskCountDTO> projectCounts = dashboardService.getProjectTaskCounts(adminId);
         return new ResponseEntity<>(projectCounts, HttpStatus.OK);
     }
 }

@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getAllUsers();
+    public ResponseEntity<List<UserDTO>> getAllUsers(@RequestHeader(value = "adminId") Long adminId) {
+        List<UserDTO> users = userService.getAllUsers(adminId);
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 }

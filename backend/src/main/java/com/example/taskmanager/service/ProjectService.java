@@ -25,39 +25,41 @@ public class ProjectService {
         this.userRepository = userRepository;
     }
 
-    public Project createProject(Project project, Long userId) {
+    public Project createProject(Project project, Long userId, Long adminId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-                
-        if (user.getRole() != Role.ADMIN) {
-            throw new UnauthorizedException("Only ADMIN can create projects");
+
+        if (!user.getAdminId().equals(adminId)) {
+            throw new UnauthorizedException("User does not belong to the current admin");
         }
-                
+
+        project.setAdminId(adminId);
         project.setCreatedBy(user);
         return projectRepository.save(project);
     }
 
-    public List<Project> getProjectsByUser(Long userId) {
+    public List<Project> getProjectsByUser(Long userId, Long adminId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-                
-        if (user.getRole() == Role.ADMIN) {
-            return projectRepository.findAll();
+
+        if (!user.getAdminId().equals(adminId)) {
+            throw new UnauthorizedException("User does not belong to the current admin");
         }
-        return projectRepository.findByCreatedById(userId);
+
+        return projectRepository.findByAdminId(adminId);
     }
 
     public void deleteProject(Long projectId, Long userId) {
         Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new ProjectNotFoundException("Project not found"));
-                
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
 
         if (user.getRole() != Role.ADMIN || !project.getCreatedBy().getId().equals(userId)) {
             throw new UnauthorizedException("Unauthorized to delete project");
         }
-        
+
         projectRepository.deleteById(projectId);
     }
 }

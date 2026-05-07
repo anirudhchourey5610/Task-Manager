@@ -31,6 +31,9 @@ public class User {
     @Column(nullable = false)
     private Role role = Role.MEMBER;
 
+    @Column(nullable = false)
+    private Long adminId;
+
     public User() {
     }
 
@@ -80,5 +83,13 @@ public class User {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
     }
 }

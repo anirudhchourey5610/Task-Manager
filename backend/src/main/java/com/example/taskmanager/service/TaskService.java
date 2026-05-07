@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class TaskService {
 
@@ -24,39 +23,28 @@ public class TaskService {
     private final ProjectRepository projectRepository;
 
     @Autowired
-    public TaskService(TaskRepository taskRepository, UserRepository userRepository, ProjectRepository projectRepository) {
+    public TaskService(TaskRepository taskRepository, UserRepository userRepository,
+            ProjectRepository projectRepository) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
         this.projectRepository = projectRepository;
     }
 
-    public Task createTask(Task task) {
+    public Task createTask(Task task, Long adminId) {
         if (task.getStatus() == null) {
             task.setStatus(Status.PENDING);
         }
-        
+
         if (task.getAssignedUserId() != null) {
-            if (task.getUserId() == null) {
-                throw new UnauthorizedException("Current userId is required to assign tasks");
-            }
-            com.example.taskmanager.entity.User currentUser = userRepository.findById(task.getUserId())
-                    .orElseThrow(() -> new UserNotFoundException("Current user not found"));
-            
-            if (currentUser.getRole() != Role.ADMIN) {
-                throw new UnauthorizedException("Only ADMIN can assign tasks");
-            }
-
-            com.example.taskmanager.entity.User assignedUser = userRepository.findById(task.getAssignedUserId())
+            User assignedUser = userRepository.findById(task.getAssignedUserId())
                     .orElseThrow(() -> new UserNotFoundException("Assigned user not found"));
-            task.setAssignedTo(assignedUser);
+
+            if (!assignedUser.getAdminId().equals(adminId)) {
+                throw new UnauthorizedException("Assigned user does not belong to the current admin");
+            }
         }
 
-        if (task.getProjectId() != null) {
-            com.example.taskmanager.entity.Project project = projectRepository.findById(task.getProjectId())
-                    .orElseThrow(() -> new ProjectNotFoundException("Project not found"));
-            task.setProject(project);
-        }
-        
+        task.setAdminId(adminId);
         return taskRepository.save(task);
     }
 
@@ -65,7 +53,8 @@ public class TaskService {
     }
 
     public List<Task> getOverdueTasks(Long userId) {
-        return taskRepository.findByAssignedToIdAndDueDateBeforeAndStatusNot(userId, java.time.LocalDate.now(), Status.COMPLETED);
+        return taskRepository.findByAssignedToIdAndDueDateBeforeAndStatusNot(userId, java.time.LocalDate.now(),
+                Status.COMPLETED);
     }
 
     public List<Task> getTasksByStatus(Long userId, Status status) {
@@ -76,8 +65,8 @@ public class TaskService {
         return taskRepository.findByProject_IdAndAssignedTo_Id(projectId, userId);
     }
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public List<Task> getAllTasks(Long adminId) {
+        return taskRepository.findByAdminId(adminId);
     }
 
     public Task getTaskById(Long id) {
@@ -96,14 +85,14 @@ public class TaskService {
         if (taskDetails.getDueDate() != null) {
             task.setDueDate(taskDetails.getDueDate());
         }
-        
+
         if (taskDetails.getAssignedUserId() != null) {
             if (taskDetails.getUserId() == null) {
                 throw new UnauthorizedException("Current userId is required to assign tasks");
             }
             com.example.taskmanager.entity.User currentUser = userRepository.findById(taskDetails.getUserId())
                     .orElseThrow(() -> new UserNotFoundException("Current user not found"));
-            
+
             if (currentUser.getRole() != Role.ADMIN) {
                 throw new UnauthorizedException("Only ADMIN can assign tasks");
             }

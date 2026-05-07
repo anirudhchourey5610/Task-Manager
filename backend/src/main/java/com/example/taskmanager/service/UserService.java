@@ -45,8 +45,8 @@ public class UserService {
         return user;
     }
 
-    public List<UserDTO> getAllUsers() {
-        return userRepository.findAll().stream()
+    public List<UserDTO> getAllUsers(Long adminId) {
+        return userRepository.findByAdminId(adminId).stream()
                 .map(user -> new UserDTO(user.getId(), user.getName(), user.getRole()))
                 .collect(Collectors.toList());
     }
