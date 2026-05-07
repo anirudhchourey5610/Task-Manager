@@ -10,6 +10,7 @@ com/example/taskmanager/exception/ProjectNotFoundException.class
 com/example/taskmanager/entity/User.class
 com/example/taskmanager/controller/TaskController.class
 com/example/taskmanager/service/TaskService.class
+com/example/taskmanager/controller/DebugController.class
 com/example/taskmanager/dto/DashboardSummaryDTO.class
 com/example/taskmanager/dto/ProjectRequest.class
 com/example/taskmanager/controller/UserController.class
