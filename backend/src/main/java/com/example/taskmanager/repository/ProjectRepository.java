@@ -18,9 +18,4 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
            "WHERE p.createdBy.id = :userId " +
            "GROUP BY p.id, p.name")
     List<ProjectTaskCountDTO> countTasksByProject(@Param("userId") Long userId);
-
-    @Query("SELECT new com.example.taskmanager.dto.ProjectTaskCountDTO(p.id, p.name, COUNT(t.id)) " +
-           "FROM Project p LEFT JOIN Task t ON t.project = p " +
-           "GROUP BY p.id, p.name")
-    List<ProjectTaskCountDTO> countAllTasksByProject();
 }

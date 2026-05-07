@@ -2,6 +2,7 @@ com/example/taskmanager/exception/EmailAlreadyExistsException.class
 com/example/taskmanager/dto/ProjectTaskCountDTO.class
 com/example/taskmanager/repository/ProjectRepository.class
 com/example/taskmanager/service/UserService.class
+com/example/taskmanager/config/WebConfig.class
 com/example/taskmanager/entity/Project.class
 com/example/taskmanager/exception/InvalidCredentialsException.class
 com/example/taskmanager/controller/AuthController.class

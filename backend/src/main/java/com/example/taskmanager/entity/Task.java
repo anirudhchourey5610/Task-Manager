@@ -38,6 +38,10 @@ public class Task {
     @JoinColumn(name = "assigned_to", nullable = true)
     private User assignedTo;
 
+    @ManyToOne
+    @JoinColumn(name = "created_by_id", nullable = true) // Set to nullable for migration, but logic will enforce it
+    private User createdBy;
+
     @Transient
     private Long assignedUserId;
 
@@ -147,5 +151,13 @@ public class Task {
 
     public void setProjectId(Long projectId) {
         this.projectId = projectId;
+    }
+
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
     }
 }

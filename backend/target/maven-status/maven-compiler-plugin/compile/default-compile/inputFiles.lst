@@ -1,5 +1,6 @@
 /Users/anirudhchourey/TaskManager/backend/src/main/java/com/example/taskmanager/exception/UserNotFoundException.java
 /Users/anirudhchourey/TaskManager/backend/src/main/java/com/example/taskmanager/exception/TaskNotFoundException.java
+/Users/anirudhchourey/TaskManager/backend/src/main/java/com/example/taskmanager/config/WebConfig.java
 /Users/anirudhchourey/TaskManager/backend/src/main/java/com/example/taskmanager/entity/Role.java
 /Users/anirudhchourey/TaskManager/backend/src/main/java/com/example/taskmanager/service/DashboardService.java
 /Users/anirudhchourey/TaskManager/backend/src/main/java/com/example/taskmanager/entity/Project.java

@@ -51,6 +51,10 @@ public class TaskService {
             task.setAssignedTo(assignedUser);
         }
 
+        com.example.taskmanager.entity.User currentUser = userRepository.findById(task.getUserId())
+                .orElseThrow(() -> new UserNotFoundException("Current user not found"));
+        task.setCreatedBy(currentUser);
+
         if (task.getProjectId() != null) {
             com.example.taskmanager.entity.Project project = projectRepository.findById(task.getProjectId())
                     .orElseThrow(() -> new ProjectNotFoundException("Project not found"));
@@ -76,8 +80,8 @@ public class TaskService {
         return taskRepository.findByProject_IdAndAssignedTo_Id(projectId, userId);
     }
 
-    public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+    public List<Task> getAllTasks(Long adminId) {
+        return taskRepository.findByCreatedBy_Id(adminId);
     }
 
     public Task getTaskById(Long id) {

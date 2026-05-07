@@ -74,8 +74,11 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks() {
-        List<Task> tasks = taskService.getAllTasks();
+    public ResponseEntity<List<Task>> getAllTasks(@RequestHeader(value = "userId", required = false) Long userId) {
+        if (userId == null) {
+            throw new IllegalArgumentException("User ID header is required");
+        }
+        List<Task> tasks = taskService.getAllTasks(userId);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 

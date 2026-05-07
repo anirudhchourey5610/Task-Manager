@@ -33,10 +33,10 @@ public class DashboardService {
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         if (user.getRole() == Role.ADMIN) {
-            long total = taskRepository.count();
-            long pending = taskRepository.countByStatus(Status.PENDING);
-            long inProgress = taskRepository.countByStatus(Status.IN_PROGRESS);
-            long completed = taskRepository.countByStatus(Status.COMPLETED);
+            long total = taskRepository.countByCreatedBy_Id(userId);
+            long pending = taskRepository.countByCreatedBy_IdAndStatus(userId, Status.PENDING);
+            long inProgress = taskRepository.countByCreatedBy_IdAndStatus(userId, Status.IN_PROGRESS);
+            long completed = taskRepository.countByCreatedBy_IdAndStatus(userId, Status.COMPLETED);
             return new DashboardSummaryDTO(total, pending, completed, inProgress);
         } else {
             long total = taskRepository.countByAssignedToId(userId);
@@ -52,7 +52,7 @@ public class DashboardService {
                 .orElseThrow(() -> new UserNotFoundException("User not found"));
 
         if (user.getRole() == Role.ADMIN) {
-            return projectRepository.countAllTasksByProject();
+            return projectRepository.countTasksByProject(userId);
         }
         return projectRepository.countTasksByProject(userId);
     }
