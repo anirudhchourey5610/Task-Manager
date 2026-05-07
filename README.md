@@ -28,6 +28,12 @@
 
 ---
 
+## Live Demo
+Frontend: https://taskmanager-frontend-production-632c.up.railway.app  
+Backend API: https://backend-production-ca89b.up.railway.app
+
+---
+
 ## 🚀 Features
 
 <table width="100%">
