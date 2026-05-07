@@ -37,6 +37,7 @@ public class DashboardService {
             long pending = taskRepository.countByCreatedBy_IdAndStatus(userId, Status.PENDING);
             long inProgress = taskRepository.countByCreatedBy_IdAndStatus(userId, Status.IN_PROGRESS);
             long completed = taskRepository.countByCreatedBy_IdAndStatus(userId, Status.COMPLETED);
+            System.out.println("[AUDIT] Admin Dashboard Summary for ID " + userId + ": Total Tasks=" + total);
             return new DashboardSummaryDTO(total, pending, completed, inProgress);
         } else {
             long total = taskRepository.countByAssignedToId(userId);

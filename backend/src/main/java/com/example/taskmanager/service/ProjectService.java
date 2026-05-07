@@ -34,11 +34,17 @@ public class ProjectService {
         }
                 
         project.setCreatedBy(user);
+        System.out.println("[AUDIT] Project created: " + project.getName() + " by Admin ID: " + userId + " (" + user.getName() + ")");
         return projectRepository.save(project);
     }
 
     public List<Project> getProjectsByUser(Long userId) {
-        return projectRepository.findByCreatedById(userId);
+        List<Project> projects = projectRepository.findByCreatedById(userId);
+        System.out.println("[AUDIT] Fetching projects for User ID: " + userId + ". Count: " + projects.size());
+        for (Project p : projects) {
+            System.out.println("  - Project: " + p.getName() + " (Owner ID: " + p.getCreatedBy().getId() + ", Owner Name: " + p.getCreatedBy().getName() + ")");
+        }
+        return projects;
     }
 
     public void deleteProject(Long projectId, Long userId) {
