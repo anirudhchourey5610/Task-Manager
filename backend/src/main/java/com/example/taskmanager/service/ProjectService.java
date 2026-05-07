@@ -38,12 +38,6 @@ public class ProjectService {
     }
 
     public List<Project> getProjectsByUser(Long userId) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + userId));
-                
-        if (user.getRole() == Role.ADMIN) {
-            return projectRepository.findAll();
-        }
         return projectRepository.findByCreatedById(userId);
     }
 

@@ -58,12 +58,6 @@ export const getOverdueTasks = () => api.get('/tasks/overdue').then(res => res.d
 
 // Project APIs
 export const getAllProjects = () => {
-    const userStr = localStorage.getItem('user');
-    let userId = '';
-    if (userStr) {
-        const user = JSON.parse(userStr);
-        userId = user.userId;
-    }
-    return api.get(`/projects/${userId}`).then(res => res.data);
+    return api.get('/projects').then(res => res.data);
 };
 export const createProject = (project) => api.post('/projects', project).then(res => res.data);

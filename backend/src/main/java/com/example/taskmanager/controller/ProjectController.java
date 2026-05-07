@@ -36,8 +36,11 @@ public class ProjectController {
         return new ResponseEntity<>(savedProject, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<Project>> getProjectsByUser(@PathVariable Long userId) {
+    @GetMapping
+    public ResponseEntity<List<Project>> getProjectsByUser(@RequestHeader(value = "userId", required = false) Long userId) {
+        if (userId == null) {
+            throw new IllegalArgumentException("User ID header is required");
+        }
         List<Project> projects = projectService.getProjectsByUser(userId);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
