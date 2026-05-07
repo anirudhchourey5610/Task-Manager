@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-   baseURL: "https://backend-production-ca89b.up.railway.app/api",
+   baseURL: "https://backend-production-ca89b.up.railway.app/api/",
 });
 
 // Interceptor to automatically add userId header to every request dynamically
