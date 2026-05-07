@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import '../styles/navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onMenuClick }) => {
     const navigate = useNavigate();
     const userStr = localStorage.getItem('user');
     const user = userStr ? JSON.parse(userStr) : null;
@@ -18,8 +18,16 @@ const Navbar = () => {
 
     return (
         <header className="navbar">
-            <div className="navbar-search">
-            </div>
+            <button
+                className="menu-toggle"
+                type="button"
+                aria-label="Open navigation"
+                onClick={onMenuClick}
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div className="navbar-user">
                 <div className="user-info">
                     <span className="user-name">{user.name}</span>
@@ -30,7 +38,7 @@ const Navbar = () => {
                 </div>
                 <button 
                     onClick={handleLogout} 
-                    style={{marginLeft: '1rem', background: 'none', border: '1px solid var(--border)', padding: '0.25rem 0.75rem', borderRadius: '4px', cursor: 'pointer', color: 'var(--text-muted)'}}
+                    className="logout-button"
                 >
                     Logout
                 </button>

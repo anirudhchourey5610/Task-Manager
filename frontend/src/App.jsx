@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
@@ -12,17 +12,29 @@ import Signup from './pages/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
 import './index.css';
 
-const Layout = ({ children }) => (
-  <div className="app-container">
-    <Sidebar />
-    <main className="main-content">
-      <Navbar />
-      <div className="page-content">
-        {children}
-      </div>
-    </main>
-  </div>
-);
+const Layout = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const closeSidebar = () => setIsSidebarOpen(false);
+
+  return (
+    <div className={`app-container ${isSidebarOpen ? 'sidebar-open' : ''}`}>
+      <Sidebar isOpen={isSidebarOpen} onNavigate={closeSidebar} />
+      <button
+        className="sidebar-backdrop"
+        type="button"
+        aria-label="Close navigation"
+        onClick={closeSidebar}
+      />
+      <main className="main-content">
+        <Navbar onMenuClick={() => setIsSidebarOpen(true)} />
+        <div className="page-content">
+          {children}
+        </div>
+      </main>
+    </div>
+  );
+};
 
 function App() {
   return (

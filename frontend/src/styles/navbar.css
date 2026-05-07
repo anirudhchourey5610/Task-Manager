@@ -7,12 +7,15 @@
   justify-content: space-between;
   padding: 0 2rem;
   z-index: 5;
+  gap: 1rem;
 }
 
 .navbar-user {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  min-width: 0;
+  margin-left: auto;
 }
 
 .user-avatar {
@@ -31,15 +34,100 @@
 .user-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .user-name {
   font-weight: 600;
   font-size: 0.875rem;
   color: var(--bg-dark);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .user-role {
   font-size: 0.75rem;
   color: var(--text-muted);
+}
+
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  flex: 0 0 auto;
+}
+
+.menu-toggle span {
+  width: 18px;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--bg-dark);
+}
+
+.logout-button {
+  margin-left: 0.25rem;
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--text-muted);
+  min-height: 2.25rem;
+  white-space: nowrap;
+}
+
+.logout-button:hover {
+  background-color: var(--bg-light);
+  color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    position: sticky;
+    top: 0;
+    height: auto;
+    min-height: 60px;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .user-name {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.625rem 1rem;
+  }
+
+  .navbar-user {
+    gap: 0.5rem;
+  }
+
+  .user-info {
+    display: none;
+  }
+
+  .user-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logout-button {
+    padding: 0.35rem 0.625rem;
+  }
 }

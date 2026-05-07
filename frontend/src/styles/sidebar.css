@@ -1,10 +1,11 @@
 .sidebar {
   width: 260px;
+  flex: 0 0 260px;
   background-color: var(--bg-dark);
   color: var(--text-light);
   display: flex;
   flex-direction: column;
-  transition: width 0.3s ease;
+  transition: transform 0.25s ease, width 0.3s ease;
   z-index: 10;
 }
 
@@ -54,4 +55,39 @@
 .nav-link.active {
   background-color: var(--primary);
   color: white;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: min(82vw, 280px);
+    flex-basis: auto;
+    transform: translateX(-100%);
+    z-index: 30;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-header {
+    height: 60px;
+    padding: 0 1.25rem;
+  }
+
+  .sidebar-nav {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: min(86vw, 280px);
+  }
+
+  .nav-link {
+    padding: 0.875rem 1rem;
+  }
 }
