@@ -17,7 +17,6 @@ const Navbar = ({ onMenuClick }) => {
     const initials = user.name ? user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'U';
 
     return (
-    return (
         <header className="navbar-premium">
             <div className="navbar-left">
                 <button
