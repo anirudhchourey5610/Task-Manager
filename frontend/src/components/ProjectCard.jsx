@@ -1,14 +1,8 @@
 import React from 'react';
 
 const ProjectCard = ({ project, taskCount, onEdit, onDelete }) => {
-    const [showPreview, setShowPreview] = React.useState(false);
-
     return (
-        <div 
-            className="project-card-premium"
-            onMouseEnter={() => setShowPreview(true)}
-            onMouseLeave={() => setShowPreview(false)}
-        >
+        <div className="project-card-premium">
             <div className="project-card-accent"></div>
             
             <div className="project-card-header">
@@ -36,28 +30,6 @@ const ProjectCard = ({ project, taskCount, onEdit, onDelete }) => {
                     </div>
                 )}
             </div>
-
-            {/* Hover Preview Popover */}
-            {showPreview && (
-                <div className="project-preview-popover">
-                    <div className="preview-header">Project Overview</div>
-                    <div className="preview-stats">
-                        <div className="preview-stat">
-                            <span className="stat-label">Total Tasks</span>
-                            <span className="stat-value">{taskCount || 0}</span>
-                        </div>
-                    </div>
-                    <div className="preview-section">
-                        <div className="preview-label">Team Members</div>
-                        <div className="preview-members-list">
-                            <div className="preview-member-chip">
-                                <div className="mini-avatar-chip">{project.createdBy?.name?.[0] || 'A'}</div>
-                                <span>{project.createdBy?.name} (Admin)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
