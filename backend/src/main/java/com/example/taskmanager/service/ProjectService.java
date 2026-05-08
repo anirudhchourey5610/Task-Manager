@@ -34,8 +34,15 @@ public class ProjectService {
         }
                 
         project.setCreatedBy(user);
-        System.out.println("[AUDIT] Project created: " + project.getName() + " by Admin ID: " + userId + " (" + user.getName() + ")");
-        return projectRepository.save(project);
+        try {
+            Project savedProject = projectRepository.save(project);
+            System.out.println("[AUDIT] Project successfully SAVED: " + savedProject.getName() + " (ID: " + savedProject.getId() + ") by Admin: " + user.getName());
+            return savedProject;
+        } catch (Exception e) {
+            System.err.println("[ERROR] Failed to save project: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public List<Project> getProjectsByUser(Long userId) {
