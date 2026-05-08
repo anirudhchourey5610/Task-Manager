@@ -54,6 +54,7 @@ export const getAllTasks = () => {
 export const getTasksByStatus = (status) => api.get(`/tasks/status/${status}`).then(res => res.data);
 export const createTask = (task) => api.post('/tasks', task).then(res => res.data);
 export const updateTask = (id, taskDetails) => api.put(`/tasks/${id}`, taskDetails).then(res => res.data);
+export const deleteTask = (id) => api.delete(`/tasks/${id}`).then(res => res.data);
 export const getOverdueTasks = () => api.get('/tasks/overdue').then(res => res.data);
 
 // Project APIs
@@ -61,3 +62,5 @@ export const getAllProjects = () => {
     return api.get('/projects').then(res => res.data);
 };
 export const createProject = (project) => api.post('/projects', project).then(res => res.data);
+export const updateProject = (id, projectDetails) => api.put(`/projects/${id}`, projectDetails).then(res => res.data);
+export const deleteProject = (id) => api.delete(`/projects/${id}`).then(res => res.data);

@@ -61,15 +61,16 @@ const CreateTask = () => {
                 <h1 className="page-title">Create New Task</h1>
             </div>
 
-            <div className="form-container">
-                {error && <div style={{color: 'red', marginBottom: '1rem'}}>{error}</div>}
+            <div className="premium-form-wrapper">
+                {error && <div className="auth-error">{error}</div>}
                 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="premium-form">
                     <div className="form-group">
                         <label className="form-label">Task Title</label>
                         <input 
                             type="text" 
                             className="form-control" 
+                            placeholder="What needs to be done?"
                             value={formData.title}
                             onChange={e => setFormData({...formData, title: e.target.value})}
                             required
@@ -80,12 +81,13 @@ const CreateTask = () => {
                         <label className="form-label">Description</label>
                         <textarea 
                             className="form-control" 
+                            placeholder="Add more details about this task..."
                             value={formData.description}
                             onChange={e => setFormData({...formData, description: e.target.value})}
                         />
                     </div>
 
-                    <div className="form-grid">
+                    <div className="form-row">
                         <div className="form-group">
                             <label className="form-label">Status</label>
                             <select 
@@ -110,7 +112,7 @@ const CreateTask = () => {
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">Assign To Project (Optional)</label>
+                            <label className="form-label">Project</label>
                             <select 
                                 className="form-control"
                                 value={formData.projectId}
@@ -124,7 +126,7 @@ const CreateTask = () => {
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">Assign To User (Optional)</label>
+                            <label className="form-label">Assignee</label>
                             <select 
                                 className="form-control"
                                 value={formData.assignedUserId}
@@ -133,14 +135,14 @@ const CreateTask = () => {
                                 <option value="">-- Unassigned --</option>
                                 {users.map(u => (
                                     <option key={u.id} value={u.id}>
-                                        {u.name} ({u.role})
+                                        {u.name}
                                     </option>
                                 ))}
                             </select>
                         </div>
                     </div>
                     
-                    <div className="form-actions">
+                    <div className="form-actions-premium">
                         <button type="button" className="btn-secondary" onClick={() => navigate('/tasks')}>
                             Cancel
                         </button>

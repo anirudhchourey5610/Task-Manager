@@ -34,15 +34,16 @@ const CreateProject = () => {
                 <h1 className="page-title">Create New Project</h1>
             </div>
 
-            <div className="form-container">
-                {error && <div style={{color: 'red', marginBottom: '1rem'}}>{error}</div>}
+            <div className="premium-form-wrapper">
+                {error && <div className="auth-error">{error}</div>}
                 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="premium-form">
                     <div className="form-group">
                         <label className="form-label">Project Name</label>
                         <input 
                             type="text" 
                             className="form-control" 
+                            placeholder="e.g. Q3 Marketing Campaign"
                             value={formData.name}
                             onChange={e => setFormData({...formData, name: e.target.value})}
                             required
@@ -53,17 +54,18 @@ const CreateProject = () => {
                         <label className="form-label">Description</label>
                         <textarea 
                             className="form-control" 
+                            placeholder="What is this project about?"
                             value={formData.description}
                             onChange={e => setFormData({...formData, description: e.target.value})}
                         />
                     </div>
                     
-                    <div className="form-actions">
+                    <div className="form-actions-premium">
                         <button type="button" className="btn-secondary" onClick={() => navigate('/projects')}>
                             Cancel
                         </button>
                         <button type="submit" className="btn-primary" disabled={submitting}>
-                            {submitting ? 'Creating...' : 'Create Project'}
+                            {submitting ? 'Initiating Project...' : 'Create Project'}
                         </button>
                     </div>
                 </form>

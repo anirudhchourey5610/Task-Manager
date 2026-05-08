@@ -31,67 +31,88 @@ const Signup = () => {
     };
 
     return (
-        <div className="auth-container">
-            <div className="auth-card">
-                <div className="auth-header">
-                    <div className="auth-brand">Task<span>Flow</span></div>
-                    <h1 className="auth-title">Create an Account</h1>
-                    <p className="auth-subtitle">Join us to manage your tasks efficiently</p>
+        <div className="auth-page">
+            <div className="auth-visual-side">
+                <div className="visual-content">
+                    <div className="auth-brand-large">Task<span>Flow</span></div>
+                    <h2 className="visual-title">Build your high-performance team today.</h2>
+                    <p className="visual-description">
+                        Everything you need to organize work, collaborate in real-time, and scale your operations without the friction.
+                    </p>
+                    <div className="visual-feature-list">
+                        <div className="feature-item">✓ Real-time collaboration</div>
+                        <div className="feature-item">✓ Advanced project tracking</div>
+                        <div className="feature-item">✓ Intelligent role management</div>
+                    </div>
                 </div>
+                <div className="visual-blob blob-3"></div>
+                <div className="visual-blob blob-4"></div>
+            </div>
 
-                {error && <div className="auth-error">{error}</div>}
+            <div className="auth-form-side">
+                <div className="auth-form-card">
+                    <div className="auth-header">
+                        <h1 className="auth-title">Create Account</h1>
+                        <p className="auth-subtitle">Join TaskFlow and start managing with precision</p>
+                    </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label className="form-label">Full Name</label>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            required 
-                            value={formData.name}
-                            onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label className="form-label">Email</label>
-                        <input 
-                            type="email" 
-                            className="form-control" 
-                            required 
-                            value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label className="form-label">Password</label>
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            required 
-                            minLength={6}
-                            value={formData.password}
-                            onChange={(e) => setFormData({...formData, password: e.target.value})}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label className="form-label">Role</label>
-                        <select 
-                            className="form-control"
-                            value={formData.role}
-                            onChange={(e) => setFormData({...formData, role: e.target.value})}
-                        >
-                            <option value="MEMBER">Member</option>
-                            <option value="ADMIN">Administrator</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" className="btn-primary" style={{width: '100%', marginTop: '1rem'}} disabled={submitting}>
-                        {submitting ? 'Creating account...' : 'Sign Up'}
-                    </button>
-                </form>
+                    {error && <div className="auth-error">{error}</div>}
 
-                <div className="auth-footer">
-                    Already have an account? <Link to="/login" className="auth-link">Sign in</Link>
+                    <form onSubmit={handleSubmit} className="premium-form">
+                        <div className="form-group">
+                            <label className="form-label">Full Name</label>
+                            <input 
+                                type="text" 
+                                className="form-control" 
+                                placeholder="John Doe"
+                                required 
+                                value={formData.name}
+                                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Email Address</label>
+                            <input 
+                                type="email" 
+                                className="form-control" 
+                                placeholder="name@company.com"
+                                required 
+                                value={formData.email}
+                                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Password</label>
+                            <input 
+                                type="password" 
+                                className="form-control" 
+                                placeholder="Min. 6 characters"
+                                required 
+                                minLength={6}
+                                value={formData.password}
+                                onChange={(e) => setFormData({...formData, password: e.target.value})}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="form-label">Workspace Role</label>
+                            <select 
+                                className="form-control"
+                                value={formData.role}
+                                onChange={(e) => setFormData({...formData, role: e.target.value})}
+                            >
+                                <option value="MEMBER">Member (Standard)</option>
+                                <option value="ADMIN">Administrator (Full Access)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" className="btn-primary auth-submit" disabled={submitting}>
+                            {submitting ? 'Creating workspace...' : 'Sign Up'}
+                        </button>
+                    </form>
+
+                    <div className="auth-footer">
+                        Already have an account? <Link to="/login" className="auth-link">Sign in instead</Link>
+                    </div>
                 </div>
             </div>
         </div>

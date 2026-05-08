@@ -17,31 +17,39 @@ const Navbar = ({ onMenuClick }) => {
     const initials = user.name ? user.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'U';
 
     return (
-        <header className="navbar">
-            <button
-                className="menu-toggle"
-                type="button"
-                aria-label="Open navigation"
-                onClick={onMenuClick}
-            >
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div className="navbar-user">
-                <div className="user-info">
-                    <span className="user-name">{user.name}</span>
-                    <span className="user-role">{user.role}</span>
-                </div>
-                <div className="user-avatar">
-                    {initials}
-                </div>
-                <button 
-                    onClick={handleLogout} 
-                    className="logout-button"
+    return (
+        <header className="navbar-premium">
+            <div className="navbar-left">
+                <button
+                    className="menu-toggle-premium"
+                    type="button"
+                    onClick={onMenuClick}
                 >
-                    Logout
+                    ☰
                 </button>
+                <div className="navbar-breadcrumb">
+                    <span className="breadcrumb-main">Workspace</span>
+                    <span className="breadcrumb-sep">/</span>
+                    <span className="breadcrumb-sub">Dashboard</span>
+                </div>
+            </div>
+            
+            <div className="navbar-right">
+                <div className="navbar-search-mini">
+                    <span className="search-icon">🔍</span>
+                    <input type="text" placeholder="Quick search..." />
+                </div>
+                <div className="user-profile-dropdown">
+                    <div className="user-avatar-premium">
+                        {initials}
+                    </div>
+                    <button 
+                        onClick={handleLogout} 
+                        className="logout-btn-premium"
+                    >
+                        Sign Out
+                    </button>
+                </div>
             </div>
         </header>
     );

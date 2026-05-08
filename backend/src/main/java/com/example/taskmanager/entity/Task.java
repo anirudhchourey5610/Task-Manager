@@ -24,6 +24,10 @@ public class Task {
     @Column(nullable = false)
     private Status status = Status.PENDING;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Priority priority = Priority.MEDIUM;
+
     @FutureOrPresent(message = "Due date must be in the present or future")
     private LocalDate dueDate;
 
@@ -95,6 +99,14 @@ public class Task {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public LocalDate getDueDate() {

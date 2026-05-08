@@ -1,133 +1,126 @@
-.navbar {
-  height: 64px;
-  background-color: var(--surface);
-  border-bottom: 1px solid var(--border);
+.navbar-premium {
+  height: 72px;
+  background: rgba(8, 12, 20, 0.7);
+  backdrop-filter: var(--glass-blur);
+  border-bottom: 1px solid var(--border-glass);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  z-index: 5;
-  gap: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 90;
 }
 
-.navbar-user {
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.menu-toggle-premium {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .menu-toggle-premium {
+    display: block;
+  }
+}
+
+.navbar-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.breadcrumb-main {
+  color: var(--text-muted);
+}
+
+.breadcrumb-sep {
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.breadcrumb-sub {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar-search-mini {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-width: 0;
-  margin-left: auto;
-}
-
-.user-avatar {
-  width: 36px;
-  height: 36px;
-  background-color: var(--primary);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 0.875rem;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.user-name {
-  font-weight: 600;
-  font-size: 0.875rem;
-  color: var(--bg-dark);
-  max-width: 180px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.user-role {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.menu-toggle {
-  display: none;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--surface);
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 4px;
-  flex: 0 0 auto;
-}
-
-.menu-toggle span {
-  width: 18px;
-  height: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  padding: 0.5rem 1rem;
   border-radius: 9999px;
-  background: var(--bg-dark);
+  width: 240px;
 }
 
-.logout-button {
-  margin-left: 0.25rem;
-  background: none;
-  border: 1px solid var(--border);
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  color: var(--text-muted);
-  min-height: 2.25rem;
-  white-space: nowrap;
-}
-
-.logout-button:hover {
-  background-color: var(--bg-light);
-  color: var(--text-main);
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    position: sticky;
-    top: 0;
-    height: auto;
-    min-height: 60px;
-    padding: 0.75rem 1.25rem;
-  }
-
-  .menu-toggle {
-    display: inline-flex;
-  }
-
-  .user-name {
-    max-width: 150px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 0.625rem 1rem;
-  }
-
-  .navbar-user {
-    gap: 0.5rem;
-  }
-
-  .user-info {
+@media (max-width: 640px) {
+  .navbar-search-mini {
     display: none;
   }
+}
 
-  .user-avatar {
-    width: 34px;
-    height: 34px;
-  }
+.navbar-search-mini input {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  width: 100%;
+  outline: none;
+}
 
-  .logout-button {
-    padding: 0.35rem 0.625rem;
-  }
+.user-profile-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-avatar-premium {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--grad-linear);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 0.8125rem;
+  box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.logout-btn-premium {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-glass);
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn-premium:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border-color: rgba(239, 68, 68, 0.2);
 }
